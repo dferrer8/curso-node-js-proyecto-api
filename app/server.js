@@ -1,27 +1,9 @@
-var express = require('express') // llamamos a Express
-var app = express()
+const express = require('express') // llamamos a Express
+const app = express()
+const router = require('./routes')
 
-var port = process.env.PORT || 8080 // establecemos nuestro puerto
+const port = process.env.PORT || 8080 // establecemos nuestro puerto
 
-// para establecer las distintas rutas, necesitamos instanciar el express router
-var router = express.Router()
-
-// establecemos nuestra primera ruta, mediante get.
-router.get('/', (req, res) => {
-  res.json({ mensaje: '¡Bienvenido a nuestra API!' })
-})
-
-router.get('/cervezas', (req, res) => {
-  res.json({ mensaje: '¡A beber cerveza!' })
-})
-
-router.post('/cervezas', (req, res) => {
-  res.json({ mensaje: '¡Cerveza añadida!' })
-})
-
-router.delete('/cervezas', (req, res) => {
-  res.json({ mensaje: '¡Cerveza borrada!' })
-})
 // nuestra ruta irá en http://localhost:8080/api
 // es bueno que haya un prefijo, sobre todo por el tema de versiones de la API
 app.use('/api', router)
