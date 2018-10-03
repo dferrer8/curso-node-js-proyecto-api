@@ -1,6 +1,6 @@
 const express = require('express') // llamamos a Express
 const app = express()
-const router = require('./routes')
+const router = require('./routes') // OJO aqui entra por index que gestiona los sub-enrutados
 
 const port = process.env.PORT || 8080 // establecemos nuestro puerto
 
