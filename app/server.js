@@ -30,9 +30,6 @@ app.get('/', (req, res) => {
   res.json({ mensaje: '¡Hola Mundo!' })
 })
 
-// iniciamos nuestro servidor
-// app.listen(port)
-// console.log('API escuchando en el puerto ' + port)
 app.listen(port, () => {
   console.log(`App listening on port ${port}!`) // lo usamos para cuando si que se haya levantado el servidor
 })
