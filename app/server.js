@@ -5,7 +5,7 @@ const router = require('./routes') // OJO aqui entra por index que gestiona los 
 // requiero el fichero db pero no lo llamo en ningun sitio. No exporta nada. Es un trozo de codigo que he puesto en otro fichero solamente.
 require('./db')
 
-require('./addCerveza')
+// require('./addCerveza')
 
 const port = process.env.PORT || 8080 // establecemos nuestro puerto
 
