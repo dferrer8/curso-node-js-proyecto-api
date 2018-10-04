@@ -19,6 +19,7 @@ const show = (req, res) => {
   const id = req.params.id
   Cervezas.findById(id, (error, cerveza) => {
     if (error) res.send({ error })
+    if (cerveza === null) return res.status(404).send({}) // o invertirlo o comprobar que sea null
     res.send(cerveza)
   })
   // res.send({ mensaje: `Buscada la cerveza que contiene ${id}` })
