@@ -1,27 +1,15 @@
-const Cervezas = require('../models/Cervezas')
-
 const search = (req, res) => {
   // api/cervezas/search?q=regaliz
   const q = req.query.q
   res.send({ mensaje: `Buscada la cerveza que contiene ${q}` })
 }
 const list = (req, res) => {
-  // res.send({ mensaje: 'Lista de las cervezas' })
-  Cervezas.find((err, cervezas) => {
-    if (err) {
-      res.status(500).send({}) // envio json vacio
-    }
-    res.status(200).send(cervezas) // envio la respuesta en si y el código status http
-  })
+  res.send({ mensaje: 'Lista de las cervezas' })
 }
 const show = (req, res) => {
   // api/cervezas/:id
   const id = req.params.id
-  Cervezas.findById(id, (error, cerveza) => {
-    if (error) res.send({ error })
-    res.send(cerveza)
-  })
-  // res.send({ mensaje: `Buscada la cerveza que contiene ${id}` })
+  res.send({ mensaje: `Buscada la cerveza que contiene ${id}` })
 }
 const create = (req, res) => {
   res.send({ mensaje: 'Guardada cerveza' })

@@ -25,3 +25,5 @@ app.listen(port, () => {
 })
 
 console.log('API todavía no escuchando!!!')
+
+module.exports = app
