@@ -2,12 +2,20 @@ const express = require('express') // llamamos a Express
 const app = express()
 const router = require('./routes') // OJO aqui entra por index que gestiona los sub-enrutados
 
+// requiero el fichero db pero no lo llamo en ningun sitio. No exporta nada. Es un trozo de codigo que he puesto en otro fichero solamente.
+require('./db')
+
+require('./addCerveza')
+
 const port = process.env.PORT || 8080 // establecemos nuestro puerto
 
 // nuestra ruta irá en http://localhost:8080/api
 // es bueno que haya un prefijo, sobre todo por el tema de versiones de la API
 app.use('/api', router)
-
+/*  enrutados por versiones de la api
+app.use('/apiv1', router)
+app.use('/apiv2', router)
+ */
 app.get('/', (req, res) => {
   res.json({ mensaje: '¡Hola Mundo!' })
 })
