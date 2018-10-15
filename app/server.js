@@ -1,9 +1,14 @@
 const express = require('express') // llamamos a Express
 const app = express()
 const router = require('./routes') // OJO aqui entra por index que gestiona los sub-enrutados
+const bodyParser = require('body-parser')
 
 // requiero el fichero db pero no lo llamo en ningun sitio. No exporta nada. Es un trozo de codigo que he puesto en otro fichero solamente.
 require('./db')
+
+// configuración middlewares
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 // require('./addCerveza')
 

@@ -1,4 +1,5 @@
 const Cervezas = require('../models/Cervezas')
+const { ObjectId } = require('mongodb')
 
 const search = (req, res) => {
   // api/cervezas/search?q=regaliz
@@ -14,7 +15,27 @@ const list = (req, res) => {
     res.status(200).send(cervezas) // envio la respuesta en si y el código status http
   })
 }
+
 const show = (req, res) => {
+  const id = req.params.id
+  Cervezas.findOne({ _id: id }, (err, cerveza) => {
+    if (!ObjectId.isValid(id)) {
+      return res.status(404).send()
+    }
+    if (err) {
+      return res.status(500).json({
+        message: 'Se ha producido un error al obtener la cerveza'
+      })
+    }
+    if (!cerveza) {
+      return res.status(404).json({
+        message: 'No tenemos esta cerveza'
+      })
+    }
+    return res.json(cerveza)
+  })
+}
+/* const show = (req, res) => {
   // api/cervezas/:id
   const id = req.params.id
   Cervezas.findById(id, (error, cerveza) => {
@@ -23,10 +44,24 @@ const show = (req, res) => {
     res.send(cerveza)
   })
   // res.send({ mensaje: `Buscada la cerveza que contiene ${id}` })
-}
-const create = (req, res) => {
+} */
+
+/* const create = (req, res) => {
   res.send({ mensaje: 'Guardada cerveza' })
+} */
+const create = (req, res) => {
+  const cerveza = new Cervezas(req.body)
+  cerveza.save((err, cerveza) => {
+    if (err) {
+      return res.status(400).json({
+        message: 'Error al guardar la cerveza',
+        error: err
+      })
+    }
+    return res.status(201).json(cerveza)
+  })
 }
+
 const update = (req, res) => {
   res.send({ mensaje: 'Cerveza actualizada' })
 }
