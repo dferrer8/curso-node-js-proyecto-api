@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router()
 const routerCervezas = require('./cervezas') // Importo el enroutador
 const routerCursos = require('./cursos') // Importo el enroutador
-const usersRouter = require('./users')
+const usersRouter = require('./user')
 
 // establecemos nuestra primera ruta, mediante get.
 router.get('/', (req, res) => {
