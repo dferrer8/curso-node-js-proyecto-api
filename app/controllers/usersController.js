@@ -12,13 +12,12 @@ const create = (req, res) => {
   const promiseSaveUser = user.save()
   promiseSaveUser
     .then(usuario => {
-      user.generateAuthToken()
-        .then(token => {
-          res
-            .header('x-auth', token)
-            .status(201)
-            .send(usuario)
-        }) // como genero el token envio el usuario y el toekn
+      user.generateAuthToken().then(token => {
+        res
+          .header('x-auth', token)
+          .status(201)
+          .send(usuario)
+      }) // como genero el token envio el usuario y el token
     })
     .catch((err) => {
       res.status(400).send({ error: err })
