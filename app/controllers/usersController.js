@@ -11,8 +11,7 @@ const create = async  (req, res) => {
       .header('x-auth', token)
       .status(201)
       .send(usuario)
-}
-  catch {
+}  catch {
     res.status(400).send({ error: err })
   }
 }
