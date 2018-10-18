@@ -27,6 +27,7 @@ describe('Usuarios', () => {
         .send({ email, password })
         .expect(201)
         .expect(res => {
+          expect(res.headers['x-auth']).to.exist // incorpora esta linea en el primer test
           expect(res.body._id).to.exist
           expect(res.body.email).to.satisfy(validator.isEmail)
         })
